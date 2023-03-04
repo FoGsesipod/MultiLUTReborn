@@ -73,7 +73,7 @@
 #endif
 
 #define LUTReborn_FileList "Atlas One\0Atlas Two\0Atlas Three\0"
-#define LUTReborn_Selections "Color0 (Usually Neutral)\0Color1\0Color2\0Color3\0Color4\0Color5\0Color6\0Color7\0Color8\0Color9\0Color10\0Color11\0Color12\0Color13\0Color14\0Color15\0Color16\0Color17\0"
+#define LUTReborn_Selections "Color0 (Usually Neutral)\0Color1\0Color2\0Color3\0Color4\0Color5\0Color6\0Color7\0Color8\0Color9\0Color10\0Color11\0Color12\0Color13\0Color14\0Color15\0Color16\0Color17 - Anything After This Might Not Appear\0Color18\0Color19\0Color20\0Color21\0Color22\0Color23\0Color24\0Color25\0Color26\0Color27\0Color28\0Color29\0Color30\0"
 
 #include "ReShade.fxh"
 
