@@ -26,7 +26,7 @@
 #endif
 
 #ifndef LUTOneSource
-    #define LUTOneSource "MultiLut_Neneko.png"
+    #define LUTOneSource "MultiLUTReborn_AtlasOne.png"
 #endif
 
 #ifndef LUTTwoTileSize
