@@ -5,8 +5,9 @@
 //=======================================================================================================
 // Includes - Defines
 //=======================================================================================================
-
-#define MultiLUTRebornTexture_Source 1
+#ifndef MultiLUTRebornTexture_Source
+    #define MultiLUTRebornTexture_Source 1
+#endif
 
 #ifndef LUTOneTileSize
     #define LUTOneTileSize 32
@@ -20,8 +21,12 @@
     #define LUTOneAmount 17
 #endif
 
+#ifndef MultiLUTRebornTextureTwo_Source
+    #define MultiLUTRebornTextureTwo_Source 2
+#endif
+
 #ifndef LUTOneSource
-    #define LUTOneSource "MultiLUTReborn_AtlasOne.png"
+    #define LUTOneSource "MultiLut_Neneko.png"
 #endif
 
 #ifndef LUTTwoTileSize
@@ -52,6 +57,10 @@
     #define LUTThreeAmount 17
 #endif
 
+#ifndef MultiLUTRebornTextureThree_Source
+    #define MultiLUTRebornTextureThree_Source 3
+#endif
+
 #ifndef LUTThreeSource 
     #define LUTThreeSource "MultiLUTReborn_AtlasThree.png"
 #endif
@@ -72,7 +81,6 @@
     #define MultiLUTRebornTextureThree_Source 1
 #endif
 
-#define LUTReborn_FileList "Atlas One\0Atlas Two\0Atlas Three\0"
 #define LUTReborn_Selections "Color0 (Usually Neutral)\0Color1\0Color2\0Color3\0Color4\0Color5\0Color6\0Color7\0Color8\0Color9\0Color10\0Color11\0Color12\0Color13\0Color14\0Color15\0Color16\0Color17 - Anything After This Might Not Appear\0Color18\0Color19\0Color20\0Color21\0Color22\0Color23\0Color24\0Color25\0Color26\0Color27\0Color28\0Color29\0Color30\0"
 
 #include "ReShade.fxh"
@@ -80,15 +88,6 @@
 //=======================================================================================================
 // Settings
 //=======================================================================================================
-
-uniform int LUTReborn_FileSelector <
-    ui_category = "Pass One";
-    ui_type = "combo";
-    ui_items = LUTReborn_FileList;
-    ui_label = "The MultiLUTReborn file to use.";
-    ui_tooltip = "Select a MultiLUTReborn Atlas file.";
-    ui_bind = "MultiLUTRebornTexture_Source";
-> = 0;
 
 uniform int LUTReborn_LUTSelector <
     ui_category = "Pass One";
@@ -123,15 +122,6 @@ uniform float LUTReborn_Luma <
 > = 1.00;
 
 #if MultiLUTRebornPassTwo
-    uniform int LUTReborn_FileSelectorTwo <
-        ui_category = "Pass Two";
-        ui_type = "combo";
-        ui_items = LUTReborn_FileList;
-        ui_label = "The MultiLUTReborn file to use.";
-        ui_tooltip = "Select a MultiLUTReborn Atlas file to use on Pass Two.";
-        ui_bind = "MultiLUTRebornTextureTwo_Source";
-    > = 1;
-
     uniform int LUTReborn_LUTSelectorTwo <
         ui_category = "Pass Two";
         ui_type = "combo";
@@ -166,15 +156,6 @@ uniform float LUTReborn_Luma <
 #endif
 
 #if MultiLUTRebornPassThree
-    uniform int LUTReborn_FileSelectorThree <
-        ui_category = "Pass Three";
-        ui_type = "combo";
-        ui_items = LUTReborn_FileList;
-        ui_label = "The MultiLUT file to use.";
-        ui_tooltip = "Select a MultiLUTReborn Atlas file to use on Pass Three.";
-        ui_bind = "MultiLUTRebornTextureThree_Source";
-    > = 1;
-
     uniform int LUTReborn_LUTSelectorThree <
         ui_category = "Pass Three";
         ui_type = "combo";
@@ -216,51 +197,51 @@ uniform float LUTReborn_Luma <
     #include "TriDither.fxh"
 #endif
 
-#if MultiLUTRebornTexture_Source == 0
+#if MultiLUTRebornTexture_Source == 1
     #define MultiLUTRebornTexture_SourceFile LUTOneSource
     #define MultiLUTRebornTexture_SourceTileSize LUTOneTileSize
     #define MultiLUTRebornTexture_SourceTileAmount LUTOneTileAmount
     #define MultiLUTRebornTexture_SourceAmount LUTOneAmount
-#elif MultiLUTRebornTexture_Source == 1
+#elif MultiLUTRebornTexture_Source == 2
     #define MultiLUTRebornTexture_SourceFile LUTTwoSource
     #define MultiLUTRebornTexture_SourceTileSize LUTTwoTileSize
     #define MultiLUTRebornTexture_SourceTileAmount LUTTwoTileAmount
     #define MultiLUTRebornTexture_SourceAmount LUTTwoAmount
-#elif MultiLUTRebornTexture_Source == 2
+#elif MultiLUTRebornTexture_Source == 3
     #define MultiLUTRebornTexture_SourceFile LUTThreeSource
     #define MultiLUTRebornTexture_SourceTileSize LUTThreeTileSize
     #define MultiLUTRebornTexture_SourceTileAmount LUTThreeTileAmount
     #define MultiLUTRebornTexture_SourceAmount LUTThreeAmount
 #endif
 
-#if MultiLUTRebornTextureTwo_Source == 0
+#if MultiLUTRebornTextureTwo_Source == 1
     #define MultiLUTRebornTextureTwo_SourceFile LUTOneSource
     #define MultiLUTRebornTextureTwo_SourceTileSize LUTOneTileSize
     #define MultiLUTRebornTextureTwo_SourceTileAmount LUTOneTileAmount
     #define MultiLUTRebornTextureTwo_SourceAmount LUTOneAmount
-#elif MultiLUTRebornTextureTwo_Source == 1
+#elif MultiLUTRebornTextureTwo_Source == 2
     #define MultiLUTRebornTextureTwo_SourceFile LUTTwoSource
     #define MultiLUTRebornTextureTwo_SourceTileSize LUTTwoTileSize
     #define MultiLUTRebornTextureTwo_SourceTileAmount LUTTwoTileAmount
     #define MultiLUTRebornTextureTwo_SourceAmount LUTTwoAmount
-#elif MultiLUTRebornTextureTwo_Source == 2
+#elif MultiLUTRebornTextureTwo_Source == 3
     #define MultiLUTRebornTextureTwo_SourceFile LUTThreeSource
     #define MultiLUTRebornTextureTwo_SourceTileSize LUTThreeTileSize
     #define MultiLUTRebornTextureTwo_SourceTileAmount LUTThreeTileAmount
     #define MultiLUTRebornTextureTwo_SourceAmount LUTThreeAmount
 #endif
 
-#if MultiLUTRebornTextureThree_Source == 0
+#if MultiLUTRebornTextureThree_Source == 1
     #define MultiLUTRebornTextureThree_SourceFile LUTOneSource
     #define MultiLUTRebornTextureThree_SourceTileSize LUTOneTileSize
     #define MultiLUTRebornTextureThree_SourceTileAmount LUTOneTileAmount
     #define MultiLUTRebornTextureThree_SourceAmount LUTOneAmount
-#elif MultiLUTRebornTextureThree_Source == 1
+#elif MultiLUTRebornTextureThree_Source == 2
     #define MultiLUTRebornTextureThree_SourceFile LUTTwoSource
     #define MultiLUTRebornTextureThree_SourceTileSize LUTTwoTileSize
     #define MultiLUTRebornTextureThree_SourceTileAmount LUTTwoTileAmount
     #define MultiLUTRebornTextureThree_SourceAmount LUTTwoAmount
-#elif MultiLUTRebornTextureThree_Source == 2
+#elif MultiLUTRebornTextureThree_Source == 3
     #define MultiLUTRebornTextureThree_SourceFile LUTThreeSource
     #define MultiLUTRebornTextureThree_SourceTileSize LUTThreeTileSize
     #define MultiLUTRebornTextureThree_SourceTileAmount LUTThreeTileAmount
@@ -327,23 +308,23 @@ void PS_MultiLUTReborn_Apply(float4 vpos : SV_Position, float2 texcoord : TEXCOO
     const float3 color = tex2D(ReShade::BackBuffer, texcoord).xyz;
 
     #if !MultiLUTRebornPassTwo && !MultiLUTRebornPassThree
-        const float3 lutcolor = lerp(color, apply(color, LUTReborn_FileSelector, LUTReborn_LUTSelector), LUTReborn_Intensity);
+        const float3 lutcolor = lerp(color, apply(color, MultiLUTRebornTexture_Source, LUTReborn_LUTSelector), LUTReborn_Intensity);
     #else
-        float3 lutcolor = lerp(color, apply(color, LUTReborn_FileSelector, LUTReborn_LUTSelector), LUTReborn_Intensity);
+        float3 lutcolor = lerp(color, apply(color, MultiLUTRebornTexture_Source, LUTReborn_LUTSelector), LUTReborn_Intensity);
     #endif
 
     res = lerp(normalize(color), normalize(lutcolor), LUTReborn_Chroma) * lerp(length(color), length(lutcolor), LUTReborn_Luma);
 
     #if MultiLUTRebornPassTwo
         res = saturate(res);
-        lutcolor = lerp(res, applytwo(res, LUTReborn_FileSelectorTwo, LUTReborn_LUTSelectorTwo), LUTReborn_IntensityTwo);
+        lutcolor = lerp(res, applytwo(res, MultiLUTRebornTexture_SourceTwo, LUTReborn_LUTSelectorTwo), LUTReborn_IntensityTwo);
 
         res = lerp(normalize(res), normalize(lutcolor), LUTReborn_ChromaTwo) * lerp(length(res), length(lutcolor), LUTReborn_LumaTwo);
     #endif
 
     #if MultiLUTRebornPassThree
         res = saturate(res);
-        lutcolor = lerp(res, applythree(res, LUTReborn_FileSelectorThree, LUTReborn_LUTSelectorThree), LUTReborn_IntensityThree);
+        lutcolor = lerp(res, applythree(res, MultiLUTRebornTexture_SourceThree, LUTReborn_LUTSelectorThree), LUTReborn_IntensityThree);
 
         res = lerp(normalize(res), normalize(lutcolor), LUTReborn_ChromaThree) * lerp(length(res), length(lutcolor), LUTReborn_LumaThree);
     #endif
